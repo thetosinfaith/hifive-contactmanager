@@ -1,5 +1,7 @@
+import lombok.Data;
+
 public class Contact {
-        private int contactId;
+        @Data
         private String firstName;
         private String lastName;
         private String email;
