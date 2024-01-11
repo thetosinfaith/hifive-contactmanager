@@ -1,4 +1,6 @@
 public class Address {
+
+        //For friends
         private int addressId;
         private int contactId;
         private String street;
