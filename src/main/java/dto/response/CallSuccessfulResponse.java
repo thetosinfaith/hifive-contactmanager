@@ -1,4 +1,4 @@
-package dto.request;
+package dto.response;
 
 public class CallSuccessfulResponse {
 }

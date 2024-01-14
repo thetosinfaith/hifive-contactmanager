@@ -1,6 +1,5 @@
 package dto.response;
 
-public class UpdateContactResponse {
+public class BlockNumberResponse {
     private String message;
-
 }
