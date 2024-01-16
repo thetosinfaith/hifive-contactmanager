@@ -1,10 +1,15 @@
 package data.models;
 
-import enums.MessageType;
+import data.enums.MessageType;
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-
+@Data
+@Document
 public class SendMessage {
+    @Id
     private String sender;
     private String receiver;
     private String messageContent;

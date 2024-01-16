@@ -1,7 +1,9 @@
 package data.models;
 
-import java.util.Date;
+import lombok.Data;
 
+import java.util.Date;
+@Data
 public class Profile {
         private String userID;
         private String username;

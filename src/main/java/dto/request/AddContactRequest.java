@@ -1,7 +1,11 @@
 package dto.request;
 
-import enums.Group;
+import data.enums.Group;
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
 public class AddContactRequest {
     private String imageUrl;
     private String email;
