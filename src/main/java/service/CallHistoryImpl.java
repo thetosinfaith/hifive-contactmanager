@@ -14,8 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 @Service
 public class CallHistoryImpl implements CallHistoryService {
-    @Autowired
     private final CallHistoryRepository repository;
+    @Autowired
     public CallHistoryImpl(CallHistoryRepository repository) {
         this.repository = repository;
     }
@@ -28,10 +28,12 @@ public class CallHistoryImpl implements CallHistoryService {
         String createPassword = request.getCreatePassword();
         String confirmPassword = request.getConfirmPassword();
 
-        if (userExist(CreateAccountRequest.getPhoneNumber()))
+        if (userExist(CreateAccountRequest.getPhoneNumber()){
+
+        }
 
 
-        CreateAccuntResponse createAccountResponse (r)
+        CreateAccuntResponse createAccountResponse ()
 
 
         if (CreateAccountResponse != null && CreateAccountResponse.isSuccess()) {
