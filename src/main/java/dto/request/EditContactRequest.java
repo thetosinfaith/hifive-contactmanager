@@ -1,16 +1,12 @@
-package data.models;
+package dto.request;
 
 import data.enums.Group;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.awt.*;
 
 @Data
-@Document
-public class Contact {
-    @Id
+public class EditContactRequest {
     private Image profilePicture;
     private String firstName;
     private String lastName;

@@ -1,9 +1,8 @@
 package dto.response;
 
 import lombok.Data;
-
 @Data
-public class ProfileResponse {
+public class AddContactResponse {
     private String message;
 
-}
+    }

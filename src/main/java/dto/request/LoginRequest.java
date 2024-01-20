@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 public class LoginRequest {
-    private String phoneNumber;
-    private String password;
+    private String email;
+    private String Password;
 }

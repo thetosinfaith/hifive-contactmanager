@@ -5,14 +5,14 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.awt.*;
+
 @Data
 public class AddContactRequest {
-    private String imageUrl;
-    private String email;
+    private Image profilePicture;
     private String firstName;
     private String lastName;
-    private String address;
     private String phoneNumber;
+    private String email;
     private Group group;
-
 }

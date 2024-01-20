@@ -3,6 +3,8 @@ package dto.response;
 import lombok.Data;
 
 @Data
-public class LoginResponse {
+public class EditContactResponse {
     private String message;
+
 }
+

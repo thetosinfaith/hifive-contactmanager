@@ -6,18 +6,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-
 @Data
 @Document
-public class CallHistory {
+public class Call {
     @Id
-    private String contactId;
-    private String phoneNumbers;
-    private CallType callType;
-    private int callDuration;
+    private Contact contacts;
     private LocalDateTime callDateTime;
-
-
-
-
+    private String callDurationInSeconds;
+    private CallType callType;
 }
