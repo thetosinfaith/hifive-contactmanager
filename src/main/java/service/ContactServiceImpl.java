@@ -45,7 +45,6 @@ public class ContactServiceImpl implements ContactService {
         response.setMessage("Account created successfully");
         return response;
     }
-
     @Override
     public String login(LoginRequest request) {
         Optional<User> userExist = user.findByEmail(request.getEmail());
@@ -119,39 +118,25 @@ public class ContactServiceImpl implements ContactService {
 
         return response;
     }
-
     @Override
-    public List<Contact> unBlockContact(String phoneNumber) {
+    public UnblockContactResponse unBlockContact(String phoneNumber) {
         Optional<Contact> blockedContact = contacts.findByPhoneNumber(phoneNumber);
 
-        return null;
+        UnblockContactResponse response = new UnblockContactResponse();
+
+        if (blockedContact.isPresent()) {
+            response.setMessage(blockedContact.get().getPhoneNumber() + " unblocked");
+        } else {
+            response.setMessage("Contact not found");
+        }
+        return response;
     }
-
-
     @Override
-    public List<Contact> getAllContacts(String name) {
-        return null;
+    public List<Contact> seeBlockedContacts(String phoneNumber) {
+        return contacts.findAll();
     }
-
-    @Override
-    public List<Contact> seeBlockedContacts(String name) {
-        return null;
-    }
-
-    @Override
-    public List<Contact> getAllContacts() {
-        return null;
-    }
-
-    @Override
-    public List<Contact> seeBlockedContacts() {
-        return null;
-    }
-
     @Override
     public List<Contact> searchContact(String name, String phoneNumber) {
-        return null;
+        return contacts.findAll();
     }
-
-
-    }
+}

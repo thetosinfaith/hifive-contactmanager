@@ -9,13 +9,14 @@ import java.util.List;
 
 @Service
 public interface ContactService {
+    CreateAccountResponse createAccount(CreateAccountRequest request);
+
+    String login(LoginRequest request);
+
     AddContactResponse addContact(AddContactRequest request);
     EditContactResponse editContact(EditContactRequest request);
     BlockContactResponse blockContact(BlockContactRequest request);
-    List<Contact> unBlockContact(String phoneNumber);
-    List<Contact> getAllContacts(String name);
-    List<Contact> seeBlockedContacts(String name);
-    List<Contact> getAllContacts();
-    List<Contact> seeBlockedContacts();
+    UnblockContactResponse unBlockContact(String phoneNumber);
+    List<Contact> seeBlockedContacts(String phoneNumber);
     List<Contact> searchContact(String name, String phoneNumber);
 }
