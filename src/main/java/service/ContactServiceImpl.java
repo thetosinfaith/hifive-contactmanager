@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ContactManagerImpl implements ContactManagerService {
+public class ContactServiceImpl implements ContactService {
     @Autowired
     private BackupRepository backup;
     @Autowired
@@ -45,6 +45,7 @@ public class ContactManagerImpl implements ContactManagerService {
         response.setMessage("Account created successfully");
         return response;
     }
+
     @Override
     public String login(LoginRequest request) {
         Optional<User> userExist = user.findByEmail(request.getEmail());
@@ -57,6 +58,7 @@ public class ContactManagerImpl implements ContactManagerService {
         }
         return "You've successfully logged in!";
     }
+
     @Override
     public AddContactResponse addContact(AddContactRequest request) {
         Contact newContact = new Contact();
@@ -73,12 +75,13 @@ public class ContactManagerImpl implements ContactManagerService {
         response.setMessage(newContact.getFirstName() + " " + newContact.getLastName() + " added successfully!");
         return response;
     }
+
     @Override
     public EditContactResponse editContact(EditContactRequest request) {
-        Optional<Contact> optionalContact = contacts.findByPhoneNumber(request.getPhoneNumber());
+        Optional<Contact> editContact = contacts.findByPhoneNumber(request.getPhoneNumber());
 
-        if (optionalContact.isPresent()) {
-            Contact foundContact = optionalContact.get();
+        if (editContact.isPresent()) {
+            Contact foundContact = editContact.get();
 
             foundContact.setProfilePicture(request.getProfilePicture());
             foundContact.setFirstName(request.getFirstName());
@@ -94,30 +97,36 @@ public class ContactManagerImpl implements ContactManagerService {
 
             return response;
         } else {
-            // Throw a ContactNotFoundException when the contact is not found
             throw new ContactNotFoundException("Contact not found.");
         }
     }
 
     @Override
     public BlockContactResponse blockContact(BlockContactRequest request) {
+        Optional<Contact> blockContact = contacts.findByPhoneNumber(request.getPhoneNumber());
+
+        if (blockContact.isEmpty()) {
+            BlockContactResponse errorResponse = new BlockContactResponse();
+            errorResponse.setMessage(request.getPhoneNumber() + " not found");
+            return errorResponse;
+        }
+
+        Contact contactToBlock = blockContact.get();
+        contacts.blocked(contactToBlock);
+
+        BlockContactResponse response = new BlockContactResponse();
+        response.setMessage(contactToBlock.getPhoneNumber() + " has been blocked");
+
+        return response;
+    }
+
+    @Override
+    public List<Contact> unBlockContact(String phoneNumber) {
+        Optional<Contact> blockedContact = contacts.findByPhoneNumber(phoneNumber);
+
         return null;
     }
 
-    @Override
-    public SendMessageResponse sendMessage(SendMessageRequest request) {
-        return null;
-    }
-
-    @Override
-    public void dialNumber(String phoneNumber) {
-
-    }
-
-    @Override
-    public void unBlockContact(String name) {
-
-    }
 
     @Override
     public List<Contact> getAllContacts(String name) {

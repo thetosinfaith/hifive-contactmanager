@@ -7,4 +7,5 @@ import java.util.Optional;
 @Repository
     public interface ContactRepository extends MongoRepository<Contact, String> {
         Optional<Contact> findByPhoneNumber(String firstName);
-    }
+    void blocked(Contact contactToBlock);
+}
