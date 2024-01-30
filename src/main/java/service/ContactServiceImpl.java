@@ -16,17 +16,10 @@ import java.util.Optional;
 @Service
 public class ContactServiceImpl implements ContactService {
     @Autowired
-    private BackupRepository backup;
-    @Autowired
-    private CallRepository calls;
-    @Autowired
     private ContactRepository contacts;
-    @Autowired
-    private MessageRepository messages;
     @Autowired
     private UserRepository user;
     @Autowired
-    private RestoreRepository restore;
 
     @Override
     public CreateAccountResponse createAccount(CreateAccountRequest request) {
@@ -57,7 +50,6 @@ public class ContactServiceImpl implements ContactService {
         }
         return "You've successfully logged in!";
     }
-
     @Override
     public AddContactResponse addContact(AddContactRequest request) {
         Contact newContact = new Contact();
@@ -74,7 +66,6 @@ public class ContactServiceImpl implements ContactService {
         response.setMessage(newContact.getFirstName() + " " + newContact.getLastName() + " added successfully!");
         return response;
     }
-
     @Override
     public EditContactResponse editContact(EditContactRequest request) {
         Optional<Contact> editContact = contacts.findByPhoneNumber(request.getPhoneNumber());
@@ -133,6 +124,7 @@ public class ContactServiceImpl implements ContactService {
     }
     @Override
     public List<Contact> seeBlockedContacts(String phoneNumber) {
+
         return contacts.findAll();
     }
     @Override

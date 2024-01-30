@@ -16,4 +16,5 @@ public class Message {
     private MessageType messageType;
     private boolean isSent;
     private LocalDateTime sentDateTime;
- }
+
+}

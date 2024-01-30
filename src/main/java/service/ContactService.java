@@ -10,9 +10,7 @@ import java.util.List;
 @Service
 public interface ContactService {
     CreateAccountResponse createAccount(CreateAccountRequest request);
-
     String login(LoginRequest request);
-
     AddContactResponse addContact(AddContactRequest request);
     EditContactResponse editContact(EditContactRequest request);
     BlockContactResponse blockContact(BlockContactRequest request);
